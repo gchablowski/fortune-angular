@@ -8,9 +8,10 @@
                 </div>
                 <p class="quote-date"> 
                     <span class="quote-date-glyph glyphicon glyphicon-triangle-left" aria-hidden="true" ng-click="nextQuote()"></span>
-                    <span class="quote-date-in">{{quote.date| date:'mediumDate'}}</span>
+                    <span class="quote-date-in" ng-if="$index==0">Today</span>
+                    <span class="quote-date-in" ng-if="!$index==0">{{quote.date| date:'mediumDate'}}</span>
                     <span class="quote-date-glyph glyphicon glyphicon-triangle-right" aria-hidden="true" ng-click="prevQuote()"></span>
-                </p> 
+                </p>
             </div>
         </div>
     </div>

@@ -7,16 +7,12 @@
  * # MainCtrl
  * Controller of the fortuneAngularApp
  */
-angular.module('fortuneAngularApp')
+angular.module('fortuneAngularController', ['ngResource'])
         .controller('MainCtrl', ['$scope', 'Quotes', function($scope, Quotes) {
-                $scope.quotes = Quotes.query().$promise.then(function(quotes) {
-                    quotes[0].date = "Today";
-                    $scope.quotes = quotes;
-                });
+                $scope.quotes = Quotes.query();
 
                 $scope.currentIndex = 0;
-
-
+                
                 $scope.setCurrentQuoteIndex = function(index) {
                     $scope.currentIndex = index;
                 };
@@ -30,7 +26,7 @@ angular.module('fortuneAngularApp')
                 };
 
                 $scope.nextQuote = function() {
-                    $scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.quotes.length - 1; 
+                    $scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.quotes.length - 1;
                 };
             }]);
 

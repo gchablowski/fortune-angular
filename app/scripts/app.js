@@ -15,7 +15,9 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'fortuneAngularController',
+    'QuotesServices'
   ])
   .config(function ($routeProvider) {
     $routeProvider
