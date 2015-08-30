@@ -7,12 +7,12 @@
  * # MainCtrl
  * Controller of the fortuneAngularApp
  */
-angular.module('fortuneAngularController', ['ngResource'])
+angular.module('fortuneAngularApp')
         .controller('MainCtrl', ['$scope', 'Quotes', function($scope, Quotes) {
                 $scope.quotes = Quotes.query();
 
                 $scope.currentIndex = 0;
-                
+
                 $scope.setCurrentQuoteIndex = function(index) {
                     $scope.currentIndex = index;
                 };

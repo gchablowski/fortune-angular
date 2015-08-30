@@ -1,0 +1,14 @@
+<div class="panel panel-default">
+    <div class="panel-heading">Register to fortune</div>
+    <div class="panel-body">
+        <form name="myForm" ng-submit="submit()">
+            <div class="form-group" ng-class="{'has-error': !myForm.$valid && click ===1, 'has-success': myForm.$valid && click ===1}">
+                <label for="email">Email address</label>
+                <input name="email" type="email" class="form-control" id="inputEmail1" placeholder="Email" ng-model="email.fortunebundle_email.email" ng-click="click=1" required>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+</div>
+
+
