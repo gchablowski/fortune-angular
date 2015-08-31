@@ -8,26 +8,33 @@
  * Controller of the fortuneAngularApp
  */
 angular.module('fortuneAngularApp')
-        .controller('RegisterCtrl', ['$scope', function($scope) {
+        .controller('RegisterCtrl', ['$scope', 'Email', function($scope, Email) {
                 $scope.myForm = {};
+                $scope.error = {};
+                $scope.valid = {};
                 $scope.email = {
-                    fortunebundle_email:{
-                        email:""
+                    fortunebundle_email: {
+                        email: ""
                     }
                 };
 
                 $scope.submit = function() {
-                    console.log("--> Submitting form");
-                    
-                    console.log($scope.email);
 
-                    /*
-                     var responsePromise = $http.post("/angularjs-examples/json-test-data.jsp", dataObject, {});
-                     responsePromise.success(function(dataFromServer, status, headers, config) {
-                     console.log(dataFromServer.title);
-                     });
-                     responsePromise.error(function(data, status, headers, config) {
-                     alert("Submitting form failed!");
-                     });*/
+                    $scope.error = Email.save($scope.email).$promise.then(
+                            function(data) {
+                                data = angular.fromJson(data);
+                                $scope.valid = data.message;
+                            },
+                            function(error) {
+                                var emessage = angular.fromJson(error);
+                                $scope.error = emessage.data.errors.children.email.errors[0];
+                            }
+                    );
+
                 };
+
+                $scope.isEmptyObject = function(item) {
+                    return angular.equals({}, item);
+                };
+
             }]);
