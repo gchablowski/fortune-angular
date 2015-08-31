@@ -8,28 +8,22 @@
  * Controller of the fortuneAngularApp
  */
 angular.module('fortuneAngularApp')
-        .controller('RegisterCtrl', ['$scope', 'Email', function($scope, Email) {
-                $scope.myForm = {};
-                $scope.error = {};
+        .controller('ActivationCtrl', ['$scope', 'Email', '$routeParams', '$location', function($scope, Email, $routeParams, $location) {
                 $scope.valid = {};
-                $scope.email = {
-                    fortunebundle_email: {
-                        email: ""
-                    }
-                };
-
-                $scope.submit = function() {
-
-                   Email.save($scope.email).$promise.then(
+                $scope.error = {};
+                
+                if ($routeParams.action === "activate" || $routeParams.action === "desactivate") {
+                    Email.activation({action: $routeParams.action, token: $routeParams.token}).$promise.then(
                             function(data) {
                                 $scope.valid = data.message;
                             },
                             function(error) {
-                                $scope.error = error.data.errors.children.email.errors[0];
+                                $scope.error = error.data.message;
                             }
                     );
-
-                };
+                }else {
+                    $location.path('/').replace();
+                }
 
                 $scope.isEmptyObject = function(item) {
                     return angular.equals({}, item);

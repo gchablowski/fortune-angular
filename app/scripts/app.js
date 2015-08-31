@@ -26,10 +26,15 @@ angular
                         controller: 'MainCtrl',
                         controllerAs: 'main'
                     })
-                    .when('/register', {
+                    .when('/email/register', {
                         templateUrl: 'views/register.html',
                         controller: 'RegisterCtrl',
                         controllerAs: 'register'
+                    })
+                    .when('/email/:action/:token', {
+                        templateUrl: 'views/activation.html',
+                        controller: 'ActivationCtrl',
+                        controllerAs: 'activation'
                     })
                     .otherwise({
                         redirectTo: '/'
