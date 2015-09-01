@@ -13,7 +13,7 @@ angular.module('fortuneAngularApp')
                 $scope.error = {};
                 
                 if ($routeParams.action === "activate" || $routeParams.action === "desactivate") {
-                    Email.activation({action: $routeParams.action, token: $routeParams.token}).$promise.then(
+                    $scope.email = Email.activation({action: $routeParams.action, token: $routeParams.token}).$promise.then(
                             function(data) {
                                 $scope.valid = data.message;
                             },

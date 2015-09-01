@@ -24,8 +24,8 @@ angular.module('fortuneAngularApp')
                             function(data) {
                                 $scope.valid = data.message;
                             },
-                            function(error) {
-                                $scope.error = error.data.errors.children.email.errors[0];
+                            function(errorResult) {
+                                $scope.error = errorResult.data.errors.children.email.errors[0];
                             }
                     );
 
