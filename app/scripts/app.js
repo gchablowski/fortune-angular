@@ -17,9 +17,11 @@ angular
             'ngSanitize',
             'ngTouch',
             'QuotesServices',
-            'EmailServices'
+            'EmailServices',
+            'TokenServices'
         ])
-        .config(function($routeProvider) {
+        .config(function($routeProvider, $httpProvider) {
+            $httpProvider.interceptors.push('tokenInjector');
             $routeProvider
                     .when('/', {
                         templateUrl: 'views/main.html',
@@ -39,6 +41,4 @@ angular
                     .otherwise({
                         redirectTo: '/'
                     });
-        }).run(function($rootScope, $location) {
-    $rootScope.location = $location;
-});
+        });

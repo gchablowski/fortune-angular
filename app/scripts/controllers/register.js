@@ -19,7 +19,6 @@ angular.module('fortuneAngularApp')
                 };
 
                 $scope.submit = function() {
-
                    Email.save($scope.email).$promise.then(
                             function(data) {
                                 $scope.valid = data.message;
