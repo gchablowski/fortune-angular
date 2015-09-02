@@ -1,6 +1,6 @@
 'use strict';
-angular.module('fortuneAngularApp')
-        .factory('tokenInjector', ['$injector', '$rootScope', '$q', function($injector, $rootScope, $q) {
+angular.module('TokenInjectorServices', [])
+        .factory('tokenInjector', ['myConfig', '$injector', '$rootScope', '$q', function(myConfig, $injector, $rootScope, $q) {
                 return {
                     // optional method
                     'request': function(config) {
@@ -21,8 +21,8 @@ angular.module('fortuneAngularApp')
                             var Token = $injector.get('Token');
                             var deferred = $q.defer();
 
-                            Token.get({client_id: "32_5lgzzbbr5yos4w8kkks804so8ow0s4s00gcwokcgcskock8s4s",
-                            client_secret: "1zuigxpohepwoc404wc84gs8kgs08o0wwos4c8gscws0cwsoks"},
+                            Token.get({client_id: myConfig.client_id,
+                            client_secret: myConfig.client_secret},
                             function(data) {
                                 $rootScope.oauth = data.access_token;
                             }).$promise.then(deferred.resolve, deferred.reject);

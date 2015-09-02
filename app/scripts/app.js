@@ -18,10 +18,19 @@ angular
             'ngTouch',
             'QuotesServices',
             'EmailServices',
-            'TokenServices'
+            'TokenServices',
+            'TokenInjectorServices',
+            'LoaderDirective',
+            'SpinnerServices'
         ])
+        .constant('myConfig', {
+            backend: 'XXX',
+            client_id: "XXX",
+            client_secret: "XXX"
+        })
         .config(function($routeProvider, $httpProvider) {
             $httpProvider.interceptors.push('tokenInjector');
+            $httpProvider.interceptors.push('SpinnerInjector');
             $routeProvider
                     .when('/', {
                         templateUrl: 'views/main.html',
